@@ -10,73 +10,107 @@ console.log('mic check, this thing on??')
 // const misc = document.querySelector('.misc');
 
 
-  // let dairyList = ['cream', 'cheese', 'egg', 'milk', 'yogurt', 'butter'];
-  // let meatList = ['chicken', 'beef', 'turkey', 'pork', 'fish'];
-  // let fruitsList = ['apple', 'banana', 'clementine', 'lemon', 'lime', 'berries', 'melon', 'avocado', 'tomato'];
-  // let vegetablesList = ['lettuce', 'spinach', 'cabbage', 'cauliflower', 'brussel sprout', 'broccoli', 'zucchini', 'squash', 'asparagus', 'green bean'];
-  // let bulbsAndRootsList = ['white onion', 'yellow onion', 'red onion', 'russet potato', 'sweet potato', 'golden potato', 'baby potato', 'scallion', 'shallot', 'garlic'];
-  // let boxedList = ['broth', 'coconut milk', 'sauce', 'bean'];
-  // let frozenList = ['pizza', 'fries'];
-  // let miscList = [''];
-
-  let groceryList = [
-    ['cream', 'cheese', 'egg', 'milk', 'yogurt', 'butter'],
-    ['chicken', 'beef', 'turkey', 'pork', 'fish'],
-    ['apple', 'banana', 'clementine', 'lemon', 'lime', 'berries', 'melon', 'avocado', 'tomato'],
-    ['lettuce', 'spinach', 'cabbage', 'cauliflower', 'brussel sprout', 'broccoli', 'zucchini', 'squash', 'asparagus', 'green bean'],
-    ['white onion', 'yellow onion', 'red onion', 'russet potato', 'sweet potato', 'golden potato', 'baby potato', 'scallion', 'shallot', 'garlic'],
-    ['broth', 'coconut milk', 'sauce', 'bean'],
-    ['pizza', 'fries'],
-    ['']
-  ]
+  let dairyList = ['cream', 'cheese', 'egg', 'milk', 'yogurt', 'butter'];
+  let meatList = ['chicken', 'beef', 'turkey', 'pork', 'fish'];
+  let fruitsList = ['apple', 'banana', 'clementine', 'lemon', 'lime', 'berries', 'melon', 'avocado', 'tomato'];
+  let vegetablesList = ['lettuce', 'spinach', 'cabbage', 'cauliflower', 'brussel sprout', 'broccoli', 'zucchini', 'squash', 'asparagus', 'green bean'];
+  let bulbsAndRootsList = ['white onion', 'yellow onion', 'red onion', 'russet potato', 'sweet potato', 'golden potato', 'baby potato', 'scallion', 'shallot', 'garlic'];
+  let boxedList = ['broth', 'coconut milk', 'sauce', 'bean'];
+  let frozenList = ['pizza', 'fries'];
+  let miscList = [''];
 
 const input = document.querySelector('#item')
 const addBtn = document.querySelector('#addBtn');
+input.addEventListener('keyup', function(e) {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    document.querySelector('#addBtn').click();
+  }
+})
+
+
+
 const ul = document.querySelectorAll('ul')
 
 addBtn.addEventListener('click', function() {
   const inputValue = input.value;
   const newLi = document.createElement('li')
   newLi.innerText = `${inputValue}`
-
-  for (let i = 0; i < groceryList.length; i++) {
-    for (let j = 0; j <groceryList[i].length; j++) {
-      if (inputValue.includes(groceryList[0][i])) {
-          const ulDairy = document.querySelector('.dairy');
-          ulDairy.append(newLi);
-          input.value = "";
-        } else if (inputValue.includes(groceryList[1][i])) {
-          const ulMeat = document.querySelector('.meat');
-          ulMeat.append(newLi);
-          input.value = "";
-        } else if (inputValue.includes(groceryList[2][i])) {
-          const ulFruit = document.querySelector('.fruits');
-          ulFruit.append(newLi);
-          input.value = "";
-        } else if (inputValue.includes(groceryList[3][i])) {
-          const ulVegetables = document.querySelector('.vegetables');
-          ulVegetables.append(newLi);
-          input.value = "";
-        } else if (inputValue.includes(groceryList[4][i])) {
-          const ulBulbsAndRoots = document.querySelector('.bulbsAndRoots');
-          ulBulbsAndRoots.append(newLi);
-          input.value = "";
-        } else if (inputValue.includes(groceryList[5][i])) {
-          const ulBoxed = document.querySelector('.boxed');
-          ulBoxed.append(newLi);
-          input.value = "";
-        } else if (inputValue.includes(groceryList[6][i])) {
-          const ulFrozen = document.querySelector('.frozen');
-          ulFrozen.append(newLi);
-          input.value = "";
-        } else {
-          const ulMisc = document.querySelector('.misc');
-          ulMisc.append(newLi);
-          input.value = "";
-        }
+  
+  if (inputValue !== dairyList && inputValue !== meatList && inputValue !== fruitsList && inputValue !== vegetablesList && inputValue !== bulbsAndRootsList && inputValue !== boxedList && inputValue !== frozenList) {
+    const ulMisc = document.querySelector('.misc');
+    ulMisc.append(newLi);
+    input.value = "";
+   }
+  
+  for (let item of dairyList) {
+    if (inputValue.includes(item)) {
+      const ulDairy = document.querySelector('.dairy');
+    ulDairy.append(newLi);
+    input.value = "";
     }
   }
+
+  for (let item of meatList) {
+    if (inputValue.includes(item)) {
+      const ulMeat = document.querySelector('.meat');
+      ulMeat.append(newLi);
+      input.value = "";
+    }
+  }
+
+  for (let item of fruitsList) {
+    if (inputValue.includes(item)) {
+      const ulFruit = document.querySelector('.fruits');
+      ulFruit.append(newLi);
+      input.value = "";
+    }
+  }
+
+  for (let item of vegetablesList) {
+    if (inputValue.includes(item)) {
+      const ulVegetables = document.querySelector('.vegetables');
+      ulVegetables.append(newLi);
+      input.value = "";
+    }
+  }
+
+  for (let item of bulbsAndRootsList) {
+    if (inputValue.includes(item)) {
+      const ulBulbsAndRoots = document.querySelector('.bulbsAndRoots');
+      ulBulbsAndRoots.append(newLi);
+      input.value = "";
+    }
+  }
+
+  for (let item of boxedList) {
+    if (inputValue.includes(item)) {
+      const ulBoxed = document.querySelector('.boxed');
+      ulBoxed.append(newLi);
+      input.value = "";
+    }
+  }
+
+  for (let item of frozenList) {
+    if (inputValue.includes(item)) {
+      const ulFrozen = document.querySelector('.frozen');
+      ulFrozen.append(newLi);
+      input.value = "";
+    }
+  }
+
+  // misc item list
+  //  if (inputValue.includes(dairyList) && inputValue.includes(meatList) && inputValue.includes(fruitsList) && inputValue.includes(vegetablesList) && inputValue.includes(bulbsAndRootsList) && inputValue.includes(boxedList) && inputValue.includes(frozenList)) {
+  //   const ulMisc = document.querySelector('.misc');
+  //   ulMisc.append(newLi);
+  //   input.value = "";
+  //  }
+
+  // if the inputValue is not equal to any of the existing food arrays, add it to miscellanious
+
+    
 })
+
 
 
 
